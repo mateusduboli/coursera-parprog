@@ -1,0 +1,14 @@
+def pNormTwoPart(a: Array[Int], p: Double): Int = {      
+  val nSegments = 4
+  val m = a.length / nSegments
+  val segments = Range(0, a.length, m)
+  
+  val sums = parallel(
+  	sumSegment(a, p, segments(0), segments(1)),
+  	sumSegment(a, p, segments(1), segments(2)),
+  	sumSegment(a, p, segments(2), segments(3)),
+  	sumSegment(a, p, segments(3), segments(4))
+  	)
+  
+  power(sums.sum, 1/p)
+}

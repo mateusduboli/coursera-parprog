@@ -1,0 +1,18 @@
+private val x = new AnyRef {}
+private var uidCount = 0L
+
+def getUniqueId(): Long = {
+  uidCount = uidCount + 1
+  uidCount
+}
+
+def startThread(n: Int) = {
+  val t = new Thread {
+    override def run() {
+      val uids = for (i <- 0 until n) yield getUniqueId()
+      println(uids)
+    }
+  }
+  t.start()
+  t
+}
